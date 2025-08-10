@@ -8,11 +8,11 @@ This analysis will be divided into 3 parts namely as Objective.
 Objective 1: Exploring the menu table
 
 Q1. View menu_items and write a query to find number of items on the menu.
+
 ```sql
 SELECT COUNT(*)
 FROM menu_items
 ```
-Answer: 
 
 <img width="101" height="62" alt="image" src="https://github.com/user-attachments/assets/e20e812b-ddd8-4f97-bac4-5e665a49d31c" />
 
@@ -84,6 +84,7 @@ GROUP BY category;
 <img width="270" height="147" alt="image" src="https://github.com/user-attachments/assets/6c78ab1d-b12c-407f-a708-23bd436b2fc8" />
 
 
+
 Objective 2: Exploring Order Table
 
 Q1. View the order_details table. What is the date range of the table?
@@ -124,7 +125,7 @@ ORDER BY num_of_items DESC;
 
 <img width="222" height="115" alt="image" src="https://github.com/user-attachments/assets/aebf75dd-035a-4dcf-ae60-022ec5f35925" />
 
-Q4. How many orders had more than 12 items?
+Q5. How many orders had more than 12 items?
 
 ```sql
 SELECT COUNT(*) FROM 
@@ -137,12 +138,17 @@ HAVING num_of_items > 12) AS num_orders;
 
 <img width="98" height="50" alt="image" src="https://github.com/user-attachments/assets/177ff74b-d35e-44c3-a5c1-a0bce9684f0f" />
 
+
 Objective 3: Analyse Customer Behaviour
 
 Q1. Combine the menu_items and order_details table into a single table.
+
 Q2. i) What were the least and most ordered items?
-    ii) Which categories were they in? 
+
+Q2. ii) Which categories were they in? 
+    
 Q3. What were the top 5 orders that spent the most money?
+
 Q4. View the details of the highest spend order. What insights could you gather from the results?
 
 
