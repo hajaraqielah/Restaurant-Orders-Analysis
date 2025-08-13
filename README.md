@@ -143,15 +143,79 @@ Objective 3: Analyse Customer Behaviour
 
 Q1. Combine the menu_items and order_details table into a single table.
 
-Q2. i) What were the least and most ordered items?
+```sql
+SELECT * FROM menu_items;
+SELECT * FROM order_details;
 
-Q2. ii) Which categories were they in? 
+SELECT * 
+FROM order_details 
+LEFT JOIN menu_items 
+ON order_details.item_id = menu_items.menu_item_id;
+```
+
+<img width="982" height="306" alt="image" src="https://github.com/user-attachments/assets/12bcb5fa-6f80-4b85-9013-c1cc500d5b95" />
+
+Q2. What were the least and most ordered items? Which categories were they in? 
+
+```sql
+SELECT item_name, category,  COUNT(order_details_id) AS num_of_purchases 
+FROM order_details 
+LEFT JOIN menu_items 
+ON order_details.item_id = menu_items.menu_item_id
+GROUP BY item_name, category
+ORDER BY num_of_purchases ASC;
+```
+
+<img width="473" height="83" alt="image" src="https://github.com/user-attachments/assets/645861e2-7564-41a3-ac6b-b8a4e18bc45d" />
+
+
+```sql
+SELECT item_name, category, COUNT(order_details_id) AS num_of_purchases 
+FROM order_details 
+LEFT JOIN menu_items 
+ON order_details.item_id = menu_items.menu_item_id
+GROUP BY item_name, category
+ORDER BY num_of_purchases DESC;
+```
+
+<img width="467" height="87" alt="image" src="https://github.com/user-attachments/assets/2d31435d-5206-472b-8981-63420771b403" />
     
 Q3. What were the top 5 orders that spent the most money?
 
+```sql
+SELECT order_id, SUM(price) AS total_spent
+FROM order_details 
+LEFT JOIN menu_items 
+ON order_details.item_id = menu_items.menu_item_id
+GROUP BY order_id
+ORDER BY total_spent DESC
+LIMIT 5;
+```
+
+<img width="201" height="186" alt="image" src="https://github.com/user-attachments/assets/c331320f-f6ed-40e0-8d90-c957680cab2d" />
+
 Q4. View the details of the highest spend order. What insights could you gather from the results?
 
+```sql
+SELECT category, COUNT(item_id) AS num_items
+FROM order_details 
+LEFT JOIN menu_items 
+ON order_details.item_id = menu_items.menu_item_id
+WHERE order_id = 440
+GROUP BY category;
+```
 
+<img width="191" height="148" alt="image" src="https://github.com/user-attachments/assets/649f3686-75ea-4c08-b968-51e02e2cc849" />
 
+Q5.  View the details of the 5 highest spend order. What insights could you gather from the results?
 
+```sql
+SELECT category, COUNT(item_id) AS num_items
+FROM order_details 
+LEFT JOIN menu_items 
+ON order_details.item_id = menu_items.menu_item_id
+WHERE order_id IN (440, 2075, 1957, 330, 2675)
+GROUP BY category;
+```
 
+<img width="193" height="147" alt="image" src="https://github.com/user-attachments/assets/2bd78880-7ac2-41f9-afd2-ee703c80c12a" />
